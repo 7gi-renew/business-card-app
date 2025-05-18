@@ -6,6 +6,7 @@ on:
 
 jobs:
   git_flows:
+    runs-on: ubuntu-latest
     env:
       VITE_SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
       VITE_SUPABASE_AUTH_DOMAIN: ${{ secrets.SUPABASE_AUTH_DOMAIN }}
@@ -13,7 +14,6 @@ jobs:
       VITE_SUPABASE_STORAGE_BUCKET: ${{ secrets.SUPABASE_STORAGE_BUCKET }}
       VITE_SUPABASE_MASSAGING_SENDER_ID: ${{ secrets.SUPABASE_MASSAGING_SENDER_ID }}
       VITE_SUPABASE_APP_ID: ${{ secrets.SUPABASE_APP_ID }}
-      runs-on: ubuntu-latest
     steps:
       - name: first checkout
         uses: actions/checkout@v4
@@ -31,3 +31,11 @@ jobs:
 
       - npm: build
         run: npm run build
+
+      - npm: auto test
+        run: npm run test
+
+      - npm: firebase deploy
+        run: firebase deploy --token "$FIREBASE_TOKEN"
+        env:
+          VITE_SUPABASE_APP_ID: ${{ secrets.FIREBASE_TOKEN }}
