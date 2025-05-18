@@ -7,6 +7,27 @@ on:
 jobs:
   git_flows:
     runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_API_KEY: ${{ SUPABASE_API_KEY }}
+      VITE_SUPABASE_AUTH_DOMAIN: ${{ SUPABASE_AUTH_DOMAIN }}
+      VITE_SUPABASE_PROJECT_ID: ${{ SUPABASE_PROJECT_ID }}
+      VITE_SUPABASE_STORAGE_BUCKET: ${{ SUPABASE_STORAGE_BUCKET }}
+      VITE_SUPABASE_MASSAGING_SENDER_ID: ${{ SUPABASE_MASSAGING_SENDER_ID }}
+      VITE_SUPABASE_APP_ID: ${{ SUPABASE_APP_ID }}
     steps:
+      - name: first checkout
+        uses: actions/checkout@v4
+
+      - name: node installation
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: hello world
         run: echo "hello world"
+
+      - name: npm install
+        run: npm install && npm install --global firebase-tools
+
+      - npm: build
+        run: npm run build
