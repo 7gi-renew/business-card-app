@@ -27,13 +27,13 @@ jobs:
         run: echo "hello world"
 
       - name: npm install
-        run: npm install && npm install --global firebase-tools
-
-      - npm: build
-        run: npm run build
+        run: npm install & npm install --global firebase-tools
 
       - npm: auto test
         run: npm run test
+
+      - npm: build
+        run: npm run build
 
       - npm: firebase deploy
         run: firebase deploy --token "$FIREBASE_TOKEN"
