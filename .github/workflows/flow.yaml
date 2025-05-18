@@ -5,5 +5,8 @@ on:
       - main
 
 jobs:
-  name: hello world
-  run: echo "hello world"
+  git_flows:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello world
+        run: echo "hello world"
