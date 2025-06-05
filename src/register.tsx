@@ -31,8 +31,10 @@ type Inputs = {
   skill: string | number;
 };
 
+type SkillName = string | undefined;
+
 export function Register() {
-  const [userSkill, setUserSkill] = useState();
+  const [userSkill, setUserSkill] = useState<SkillName[]>([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -69,6 +71,7 @@ export function Register() {
       });
 
       setUserSkill(skillName);
+
       setLoading(false);
     };
     getUserSkill();
@@ -102,13 +105,13 @@ export function Register() {
               />
             </FormControl>
             {errors.name && <Text>{errors.name?.message}</Text>}
-            <Heading as="h4" size="sm" mt="3" textAlign="left">
+            <Heading as="h4" size="20px" mt="3" textAlign="left">
               自己紹介 *
             </Heading>
             <Textarea
               size="lg"
               mt="2"
-              rows="6"
+              rows={6}
               {...register("description", { required: "未入力です" })}
             />
             {errors.description && <Text>{errors.description?.message}</Text>}
@@ -118,11 +121,11 @@ export function Register() {
 
             <Select
               mt="2"
-              defaultValue={loading || userSkill[0]}
+              defaultValue={loading ? userSkill[0] : ""}
               {...register("skill")}
             >
               {loading ||
-                userSkill.map((skill: string) => {
+                userSkill.map((skill) => {
                   return <option value={skill}>{skill}</option>;
                 })}
             </Select>

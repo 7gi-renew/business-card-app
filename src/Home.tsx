@@ -27,7 +27,6 @@ export function Home() {
     setError(false);
     const getID = data.id;
 
-    console.log(getID);
     const matchingIDData = await matchID(getID);
 
     if (matchingIDData === "matching") {

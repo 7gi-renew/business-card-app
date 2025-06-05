@@ -1,9 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { IdPage } from "../IdPage";
 import { BrowserRouter } from "react-router";
-import { UserDataRecord } from "../domain/record";
-import { getUserData } from "../utils/supabase-function";
-
 // jest.mock("../utils/supabase-function", () => {
 //   return {
 //     getUserData: jest.fn(),

@@ -69,13 +69,13 @@ export function IdPage() {
                 <Heading as="h4" size="md" pt="4" textAlign="left">
                   自己紹介
                 </Heading>
-                <Text mt="1" textAlign="left">
+                <Box mt="1" textAlign="left">
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(data.description),
                     }}
                   ></div>
-                </Text>
+                </Box>
 
                 <Heading as="h4" size="md" pt="4" textAlign="left">
                   スキル
@@ -92,7 +92,7 @@ export function IdPage() {
                       borderColor="transparent"
                       size="sm"
                       href={`https://qiita.com/${data.github_id}`}
-                      icon={<FaGithub size="sm" />}
+                      icon={<FaGithub size="30px" />}
                     />
                   )}
                   {data.qiita_id && (
@@ -104,7 +104,7 @@ export function IdPage() {
                       borderColor="transparent"
                       size="sm"
                       href={`https://qiita.com/${data.qiita_id}`}
-                      icon={<MdOutlineDatasetLinked size="sm" />}
+                      icon={<MdOutlineDatasetLinked size="30px" />}
                     />
                   )}
                   {data.x_id && (
@@ -116,7 +116,7 @@ export function IdPage() {
                       size="sm"
                       ml="3"
                       href={`https://qiita.com/${data.x_id}`}
-                      icon={<FaXTwitter size="sm" />}
+                      icon={<FaXTwitter size="30px" />}
                     />
                   )}
                 </Box>
