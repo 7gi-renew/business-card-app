@@ -1,8 +1,7 @@
 name: cron for supabase
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 21 * * *"
 
 jobs:
   build:
