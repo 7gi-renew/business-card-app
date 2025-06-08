@@ -15,6 +15,7 @@ jobs:
       VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
       VITE_FIREBASE_MASSAGING_SENDER_ID: ${{ secrets.FIREBASE_MASSAGING_SENDER_ID }}
       VITE_FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+
     steps:
       - name: first checkout
         uses: actions/checkout@v4

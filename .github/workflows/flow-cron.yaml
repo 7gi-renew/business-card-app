@@ -1,0 +1,26 @@
+name: cron for supabase
+on:
+  schedule:
+    - cron: "0 21 * * *"
+
+jobs:
+  build:
+    name: Workflows
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: first checkout
+        uses: actions/checkout@v4
+
+      - name: node installation
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: npm install
+        run: npm install
+
+      - name: install npx & typescript
+        run: npm install -g npx & npm install tsx typescript & npm i -D tsx
+
+      - name:
