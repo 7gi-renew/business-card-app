@@ -23,4 +23,5 @@ jobs:
       - name: install npx & typescript
         run: npm install -g npx & npm install tsx typescript & npm i -D tsx
 
-      - name:
+      - name: delete data
+        run: npx tsx ./batch/index.ts
