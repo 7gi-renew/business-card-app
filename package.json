@@ -16,6 +16,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@supabase/supabase-js": "^2.49.8",
+    "@testing-library/user-event": "^14.6.1",
     "dompurify": "^3.2.6",
     "dotenv": "^16.5.0",
     "firebase": "^11.7.3",

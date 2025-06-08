@@ -6,6 +6,7 @@ export class UserDataRecord {
     public qiita_id: string,
     public x_id: string,
     public skill?: string,
+    public user_id?: string,
   ) {}
 
   public static newUserDataRecord(
@@ -15,6 +16,7 @@ export class UserDataRecord {
     qiita_id: string,
     x_id: string,
     skill?: string,
+    user_id?: string,
   ): UserDataRecord {
     return new UserDataRecord(
       name,
@@ -23,6 +25,7 @@ export class UserDataRecord {
       qiita_id,
       x_id,
       skill,
+      user_id,
     );
   }
 }

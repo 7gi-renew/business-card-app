@@ -143,8 +143,8 @@ export const matchID = async (value?: string) => {
     .single();
 
   if (response.error) {
-    return "error";
+    throw new Error(response.error.message);
   }
 
-  return "matching";
+  return response.data;
 };

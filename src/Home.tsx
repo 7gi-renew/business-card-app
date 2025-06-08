@@ -5,6 +5,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  Link,
 } from "@chakra-ui/react";
 import "./App.css";
 // import { Route, Routes } from "react-router";
@@ -23,13 +24,14 @@ export function Home() {
     id: string;
   };
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (value) => {
     setError(false);
-    const getID = data.id;
+    const getID = value.id;
 
-    const matchingIDData = await matchID(getID);
+    const matchingData = await matchID(getID);
+    const matchingDataID = matchingData.user_id;
 
-    if (matchingIDData === "matching") {
+    if (matchingDataID === getID) {
       navigate(`/cards/${getID}`);
     } else {
       setError(true);
@@ -45,13 +47,22 @@ export function Home() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl>
             <FormLabel>ID</FormLabel>
-            <Input type="text" {...register("id")} />
+            <Input type="text" data-testid="checkForm" {...register("id")} />
             {error && <p>該当のIDはありません</p>}
           </FormControl>
-          <Button type="submit" mt="4">
+          <Button type="submit" data-testid="searchBtn" mt="4">
             検索
           </Button>
         </form>
+      </Box>
+      <></>
+      <Box mt={6}>
+        <Link
+          data-testid="registerLink"
+          onClick={() => navigate("/cards/register")}
+        >
+          新規登録はこちら
+        </Link>
       </Box>
     </>
   );

@@ -27,20 +27,25 @@ export function IdPage() {
 
   useEffect(() => {
     const userDataGetting = async () => {
-      const gettingUserData = await getUserData(id);
-      const gettingUserSkill = await getUserSkillId(id);
+      try {
+        const gettingUserData = await getUserData(id);
 
-      const skillId = await gettingUserSkill.skill_id;
-      const gettingSkills = await getUserSkills(skillId);
+        const gettingUserSkill = await getUserSkillId(id);
 
-      const skillName = gettingSkills.name;
+        const skillId = await gettingUserSkill.skill_id;
+        const gettingSkills = await getUserSkills(skillId);
 
-      const newSkillData = gettingUserData[0];
+        const skillName = gettingSkills.name;
 
-      newSkillData.skill = skillName;
+        const newSkillData = gettingUserData[0];
 
-      setUserData(gettingUserData);
-      setLoading(false);
+        newSkillData.skill = skillName;
+
+        setUserData(gettingUserData);
+        setLoading(false);
+      } catch (error) {
+        console.error("IDが一致しません", error);
+      }
     };
 
     userDataGetting();
@@ -49,10 +54,6 @@ export function IdPage() {
   // const test = userSkillID.forEach((val) => {
   //   return val;
   // });
-
-  const backHome = () => {
-    navigate("/");
-  };
 
   return (
     <>
@@ -93,6 +94,7 @@ export function IdPage() {
                       size="sm"
                       href={`https://qiita.com/${data.github_id}`}
                       icon={<FaGithub size="30px" />}
+                      data-testid="GitHub"
                     />
                   )}
                   {data.qiita_id && (
@@ -105,6 +107,7 @@ export function IdPage() {
                       size="sm"
                       href={`https://qiita.com/${data.qiita_id}`}
                       icon={<MdOutlineDatasetLinked size="30px" />}
+                      data-testid="Qiita"
                     />
                   )}
                   {data.x_id && (
@@ -117,6 +120,7 @@ export function IdPage() {
                       ml="3"
                       href={`https://qiita.com/${data.x_id}`}
                       icon={<FaXTwitter size="30px" />}
+                      data-testid="Twitter"
                     />
                   )}
                 </Box>
@@ -124,7 +128,13 @@ export function IdPage() {
             </Box>
           </>
         ))}
-      <Button mt="8" w="100%" colorScheme="teal" onClick={backHome}>
+      <Button
+        mt="8"
+        w="100%"
+        colorScheme="teal"
+        onClick={() => navigate("/")}
+        data-testid="backButton"
+      >
         戻る
       </Button>
     </>

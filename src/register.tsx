@@ -86,22 +86,27 @@ export function Register() {
         <Box px="6" py="8" boxShadow="md" borderColor="gray.100">
           <form onSubmit={handleSubmit(onSubmit)}>
             <Heading as="h4" size="sm" textAlign="left">
-              好きな英単語
+              好きな英単語 *
             </Heading>
             <FormControl mt="2">
               <Input
+                data-testid="idForm"
                 type="text"
-                {...register("user_id", { pattern: /^[a-zA-Z]*$/ })}
+                {...register("user_id", {
+                  pattern: /^[a-zA-Z]+$/,
+                  required: true,
+                })}
               />
             </FormControl>
-            {errors.user_id && <Text>英単語で入力してください</Text>}
+            {errors.user_id && <Text>単語が正しく入力されていません</Text>}
             <Heading as="h4" size="sm" mt="3" textAlign="left">
               お名前 *
             </Heading>
             <FormControl mt="2">
               <Input
                 type="text"
-                {...register("name", { required: "未入力です" })}
+                data-testid="nameForm"
+                {...register("name", { required: "お名前が未入力です" })}
               />
             </FormControl>
             {errors.name && <Text>{errors.name?.message}</Text>}
@@ -112,7 +117,8 @@ export function Register() {
               size="lg"
               mt="2"
               rows={6}
-              {...register("description", { required: "未入力です" })}
+              data-testid="descriptionForm"
+              {...register("description", { required: "自己紹介が未入力です" })}
             />
             {errors.description && <Text>{errors.description?.message}</Text>}
             <Heading as="h4" size="sm" mt="3" textAlign="left">
@@ -123,6 +129,7 @@ export function Register() {
               mt="2"
               defaultValue={loading ? userSkill[0] : ""}
               {...register("skill")}
+              data-testid="skillForm"
             >
               {loading ||
                 userSkill.map((skill) => {
@@ -134,21 +141,33 @@ export function Register() {
               GitHub ID
             </Heading>
             <FormControl mt="2">
-              <Input type="text" {...register("github_id")} />
+              <Input
+                type="text"
+                data-testid="GithubForm"
+                {...register("github_id")}
+              />
             </FormControl>
             <Heading as="h4" size="sm" mt="3" textAlign="left">
               Qiita ID
             </Heading>
             <FormControl mt="2">
-              <Input type="text" {...register("qiita_id")} />
+              <Input
+                type="text"
+                data-testid="qiitaForm"
+                {...register("qiita_id")}
+              />
             </FormControl>
             <Heading as="h4" size="sm" mt="3" textAlign="left">
               X ID
             </Heading>
             <FormControl mt="2">
-              <Input type="text" {...register("x_id")} />
+              <Input
+                type="text"
+                data-testid="twitterForm"
+                {...register("x_id")}
+              />
             </FormControl>
-            <Button type="submit" mt="6">
+            <Button type="submit" data-testid="submitButton" mt="6">
               登録
             </Button>
           </form>
