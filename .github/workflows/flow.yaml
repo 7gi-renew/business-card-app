@@ -31,6 +31,9 @@ jobs:
       - name: npm install
         run: npm install & npm install --global firebase-tools
 
+      - name: jest install
+        run: npm install --save-dev jest
+
       - name: auto test
         run: npm run test
 
