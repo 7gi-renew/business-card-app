@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   FormControl,
   FormLabel,
   Heading,
@@ -40,29 +41,65 @@ export function Home() {
 
   return (
     <>
-      <Heading as="h2" size="lg">
-        デジタル名刺アプリ
-      </Heading>
-      <Box>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl>
-            <FormLabel>ID</FormLabel>
-            <Input type="text" data-testid="checkForm" {...register("id")} />
-            {error && <p>該当のIDはありません</p>}
-          </FormControl>
-          <Button type="submit" data-testid="searchBtn" mt="4">
-            検索
-          </Button>
-        </form>
-      </Box>
-      <></>
-      <Box mt={6}>
-        <Link
-          data-testid="registerLink"
-          onClick={() => navigate("/cards/register")}
-        >
-          新規登録はこちら
-        </Link>
+      <Box w="100vw" h="100vh" bg="gray.200">
+        <Center w="100vw" h="100vh">
+          <Box>
+            <Heading as="h2" size="lg" textAlign="center">
+              デジタル名刺アプリ
+            </Heading>
+            <Box w="320px" margin="0 auto" display="flex" alignItems="center">
+              <Box
+                w="100%"
+                px="4"
+                py="6"
+                bg="white"
+                mt="4"
+                borderRadius="6"
+                boxShadow="md"
+              >
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <FormControl>
+                    <FormLabel>ID</FormLabel>
+                    <Input
+                      bg="white"
+                      type="text"
+                      borderColor=""
+                      data-testid="checkForm"
+                      {...register("id")}
+                    />
+                    {error && <p>該当のIDはありません</p>}
+                  </FormControl>
+                  <Button
+                    type="submit"
+                    data-testid="searchBtn"
+                    mt="6"
+                    w="100%"
+                    bg="teal.500"
+                    border="none"
+                    color="white"
+                    _hover={{
+                      background: "teal.400",
+                    }}
+                  >
+                    検索
+                  </Button>
+                </form>
+              </Box>
+            </Box>
+            <Box mt={6} textAlign="center">
+              <Link
+                data-testid="registerLink"
+                onClick={() => navigate("/cards/register")}
+                _hover={{
+                  textUnderlinePosition: "none",
+                  color: "gray.500",
+                }}
+              >
+                新規登録はこちら
+              </Link>
+            </Box>
+          </Box>
+        </Center>
       </Box>
     </>
   );
